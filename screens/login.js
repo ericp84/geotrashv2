@@ -9,7 +9,7 @@ const login = (props) => {
     const [passwordin, setPasswordIn] = useState('');
     const [userexist, setUserExist] = useState(false);
     const [errorsignin, setErrorSignin] = useState([])
-    // 'http:/192.168.137.1:3000/login'
+    // 'http://192.168.137.1:3000/login'
     let handleSignin = async () => {
         const user = await fetch('https://geotrashv2-backend.herokuapp.com/login', {
             method: 'POST',
