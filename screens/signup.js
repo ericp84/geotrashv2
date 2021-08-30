@@ -10,9 +10,9 @@ function signup(props) {
     const[email, setEmail] = useState('');
     const[userexistup, setUserExistup] = useState(false);
     const[errorsignup, setErrorSignup] = useState([]);
-// https://mysterious-plateau-19771.herokuapp.com/signup
+// 'http:/192.168.137.1:3000/signup'
 let handleSignup = async () => {
-    const userup = await fetch('http:/192.168.137.1:3000/signup', {
+    const userup = await fetch('https://geotrashv2-backend.herokuapp.com/signup', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `firstname=${firstname}&lastname=${lastname}&email=${email}&password=${password}`

@@ -47,7 +47,8 @@ const mapscreen = () => {
 ////////////////////////////////////////////////////////////////////////fetch bdd enregistrement ajout poubelles//////////////////////////////////////////////////////////////////
   let trashmap = async(colorMarker, typeMarker) => {
     setTrashList([... trashlist, {latitude: loctrash.latitude, longitude: loctrash.longitude, color: colorMarker, type: typeMarker}])
-    const trashin = await fetch('http:/192.168.137.1:3000/addtrash', {
+    //'http:/192.168.137.1:3000/addtrash'
+    const trashin = await fetch('https://geotrashv2-backend.herokuapp.com/addtrash', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `latitude=${loctrash.latitude}&longitude=${loctrash.longitude}&color=${colorMarker}&type=${typeMarker}`
@@ -62,7 +63,8 @@ const mapscreen = () => {
 ///////////////////////////////////////////////////////////////////////rappel trash BDD au lancement appli///////////////////////////////////////////////////////////////////////
 useEffect(()=> {
   async function trash() {
-    const markstart = await fetch ('http://192.168.137.1:3000/calltrash')
+    //'http://192.168.137.1:3000/calltrash'
+    const markstart = await fetch ('https://geotrashv2-backend.herokuapp.com/calltrash')
     const mark = await markstart.json();
     setMarkers(mark.recuptrash)
   }
@@ -70,7 +72,8 @@ useEffect(()=> {
 }, [trashlist, trashStart])
 /////////////////////////////////////////////////////////////////////commandes filtre////////////////////////////////////////////////////////////////////////////////////////////
   const getMarkerFromColor = async (colormark) => {
-  const filter = await fetch(`http://192.168.137.1:3000/trash/type/${colormark}`)
+    //`http://192.168.137.1:3000/trash/type/${colormark}`
+  const filter = await fetch(`https://geotrashv2-backend.herokuapp.com/trash/type${colormark}`)
   console.log(colormark)
   const filterJson = await filter.json();
   setMarkers(filterJson.colorfilter)
